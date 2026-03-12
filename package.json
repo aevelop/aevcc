@@ -1,0 +1,55 @@
+{
+  "name": "aevcc",
+  "version": "1.4.1",
+  "description": "Complete collection of battle-tested Claude Code configs — agents, skills, hooks, commands, plugins, and rules",
+  "keywords": [
+    "claude-code",
+    "ai",
+    "agents",
+    "skills",
+    "hooks",
+    "mcp",
+    "rules",
+    "claude",
+    "anthropic",
+    "tdd",
+    "code-review",
+    "security",
+    "automation",
+    "best-practices"
+  ],
+  "author": {
+    "name": "Aevelop",
+    "url": "https://x.com/aevelop"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aevelop/aevcc.git"
+  },
+  "homepage": "https://github.com/aevelop/aevcc#readme",
+  "bugs": {
+    "url": "https://github.com/aevelop/aevcc/issues"
+  },
+  "files": [
+    "agents/",
+    "commands/",
+    "docs/mcp-config/",
+    "plugins/",
+    "skills/",
+    ".claude-plugin/plugin.json",
+    ".claude-plugin/README.md"
+  ],
+  "scripts": {
+    "lint": "eslint . && markdownlint '**/*.md' --ignore node_modules"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "globals": "^17.1.0",
+    "markdownlint-cli": "^0.47.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
