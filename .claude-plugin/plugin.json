@@ -9,9 +9,5 @@
     "homepage": "https://github.com/aevelop/aevcc",
     "repository": "https://github.com/aevelop/aevcc",
     "license": "MIT",
-    "keywords": ["claude-code", "agents", "skills", "hooks", "commands", "rules", "tdd", "code-review", "security", "workflow", "automation", "best-practices"],
-    "agents": "./agents/",
-    "commands": "./commands/",
-    "skills": "./skills/"
-    
+    "keywords": ["claude-code", "agents", "skills", "hooks", "commands", "rules", "tdd", "code-review", "security", "workflow", "automation", "best-practices"]
 }
