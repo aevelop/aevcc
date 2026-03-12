@@ -1,0 +1,26 @@
+{
+    "name": "aevcc",
+    "owner": {
+        "name": "aevelop",
+        "email": "aevelop@gmail.com"
+    },
+    "metadata": {
+        "description": "Aevelop Claude Code Marketplace"
+    },
+    "plugins": [
+        {
+            "name": "aevcc",
+            "source": "./",
+            "description": "Aevelop Claude Code Marketplace",
+            "author": {
+                "name": "aevelop"
+            },
+            "homepage": "https://github.com/aevelop/aevcc",
+            "repository": "https://github.com/aevelop/aevcc",
+            "license": "MIT",
+            "keywords": ["agents", "skills", "hooks", "commands", "tdd", "code-review", "security", "best-practices"],
+            "category": "workflow",
+            "tags": ["agents", "skills", "hooks", "commands", "tdd", "code-review", "security", "best-practices"]
+        }
+    ]
+}
