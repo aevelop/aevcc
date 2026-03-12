@@ -1,6 +1,6 @@
 {
     "name": "aevcc",
-    "version": "1.4.1",
+    "version": "1.0.0",
     "description": "Aevelop Claude Code Marketplace",
     "author": {
         "name": "aevelop",
@@ -10,7 +10,8 @@
     "repository": "https://github.com/aevelop/aevcc",
     "license": "MIT",
     "keywords": ["claude-code", "agents", "skills", "hooks", "commands", "rules", "tdd", "code-review", "security", "workflow", "automation", "best-practices"],
-    "commands": "./commands",
-    "skills": "./skills",
-    "agents": "./agents"
+    "agents": "./agents/",
+    "commands": "./commands/",
+    "skills": "./skills/"
+    
 }
