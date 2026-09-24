@@ -4,6 +4,19 @@ Production-ready agents, skills, hooks, commands, rules, plugins, and MCP config
 
 ---
 
+## Reproduce the full machine setup
+
+Everything installed on the reference machine (CLI, plugins, skills, GSD, settings, MCP servers, commands) is
+documented per concern in [docs/README.md](docs/README.md), each with its own install script:
+
+```bash
+git clone https://github.com/aevelop/aev-cc.git aevcc && cd aevcc
+bash scripts/install/all.sh          # everything, or one step: bash scripts/install/20-plugins.sh
+./scripts/export.sh                  # refresh the snapshot from the current machine
+```
+
+---
+
 ## 🚀 Quick Start
 
 Get up and running in under 2 minutes:
@@ -12,7 +25,7 @@ Get up and running in under 2 minutes:
 
 ```bash
 # Add marketplace
-/plugin marketplace add aevelop/aevcc
+/plugin marketplace add aevelop/aev-cc
 
 # Install plugin
 /plugin install aevcc@aevcc
@@ -23,7 +36,7 @@ Get up and running in under 2 minutes:
 
 ```bash
 # Clone the repo first
-git clone https://github.com/aevelop/aevcc.git
+git clone https://github.com/aevelop/aev-cc.git
 
 # Copy rules (applies to all projects)
 cp -r aevcc/rules/* ~/.claude/rules/
@@ -66,7 +79,7 @@ If you prefer manual control over what's installed:
 ```bash
 # Clone the repo
 
-git clone https://github.com/aevelop/aevcc.git
+git clone https://github.com/aevelop/aev-cc.git
 
 # Copy agents to your Claude config
 cp aevcc/agents/*.md ~/.claude/agents/

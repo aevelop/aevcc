@@ -15,8 +15,8 @@
             "author": {
                 "name": "aevelop"
             },
-            "homepage": "https://github.com/aevelop/aevcc",
-            "repository": "https://github.com/aevelop/aevcc",
+            "homepage": "https://github.com/aevelop/aev-cc",
+            "repository": "https://github.com/aevelop/aev-cc",
             "license": "MIT",
             "keywords": ["agents", "skills", "hooks", "commands", "tdd", "code-review", "security", "best-practices"],
             "category": "workflow",

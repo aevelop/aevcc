@@ -25,11 +25,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aevelop/aevcc.git"
+    "url": "git+https://github.com/aevelop/aev-cc.git"
   },
-  "homepage": "https://github.com/aevelop/aevcc#readme",
+  "homepage": "https://github.com/aevelop/aev-cc#readme",
   "bugs": {
-    "url": "https://github.com/aevelop/aevcc/issues"
+    "url": "https://github.com/aevelop/aev-cc/issues"
   },
   "files": [
     "agents/",

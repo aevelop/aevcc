@@ -6,8 +6,8 @@
         "name": "aevelop",
         "url": "https://aevelop.com/"
     },
-    "homepage": "https://github.com/aevelop/aevcc",
-    "repository": "https://github.com/aevelop/aevcc",
+    "homepage": "https://github.com/aevelop/aev-cc",
+    "repository": "https://github.com/aevelop/aev-cc",
     "license": "MIT",
     "keywords": ["claude-code", "agents", "skills", "hooks", "commands", "rules", "tdd", "code-review", "security", "workflow", "automation", "best-practices"]
 }

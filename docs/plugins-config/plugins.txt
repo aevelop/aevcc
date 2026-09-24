@@ -1,0 +1,36 @@
+hookify@claude-plugins-official e225b998a17e
+code-simplifier@claude-plugins-official 1.0.0 disabled
+code-review@claude-plugins-official e225b998a17e
+pr-review-toolkit@claude-plugins-official e225b998a17e disabled
+security-guidance@claude-plugins-official 2.0.8
+context7@claude-plugins-official e225b998a17e
+commit-commands@claude-plugins-official e225b998a17e disabled
+frontend-design@claude-plugins-official e225b998a17e
+feature-dev@claude-plugins-official e225b998a17e
+ralph-loop@claude-plugins-official 1.0.0
+explanatory-output-style@claude-plugins-official 1.0.0
+postgres-best-practices@supabase-agent-skills bbde7ff5f881 disabled
+ecc@ecc 1.4.1
+superpowers@claude-plugins-official 6.4.1
+claude-md-management@claude-plugins-official 1.0.0 disabled
+claude-code-setup@claude-plugins-official 1.0.0 disabled
+impeccable@impeccable 1.3.0 disabled
+context-mode@context-mode 1.0.25
+design-ops@designer-skills 1.0.0 disabled
+design-research@designer-skills 1.0.0 disabled
+design-systems@designer-skills 1.0.0 disabled
+designer-toolkit@designer-skills 1.0.0 disabled
+interaction-design@designer-skills 1.0.0 disabled
+prototyping-testing@designer-skills 1.0.0 disabled
+ui-design@designer-skills 1.0.0 disabled
+ux-strategy@designer-skills 1.0.0 disabled
+typescript-lsp@claude-plugins-official 1.0.0
+double-shot-latte@superpowers-marketplace 1.2.0
+andrej-karpathy-skills@karpathy-skills 1.0.0 disabled
+document-skills@anthropic-agent-skills 33375500bcea disabled
+example-skills@anthropic-agent-skills 33375500bcea disabled
+php-lsp@claude-plugins-official 1.0.0
+understand-anything@understand-anything 2.7.5
+karpathy-automatic-claude-md@karpathy-automatic-claude-md 1.0.0
+modern-web-guidance@googlechrome 0.0.190 disabled
+open-code-review@open-code-review 1.0.0

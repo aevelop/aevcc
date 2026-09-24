@@ -43,3 +43,6 @@ marketing/
 
 # Claude
 */settings.local.json
+# Node compile cache (created when scripts run npx/claude from the repo)
+node-compile-cache/
+/CLAUDE.md

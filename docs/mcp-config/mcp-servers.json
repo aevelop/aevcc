@@ -1,41 +1,140 @@
 {
   "mcpServers": {
+    "clickhouse": {
+      "description": "ClickHouse analytics queries",
+      "type": "http",
+      "url": "https://mcp.clickhouse.cloud/mcp"
+    },
+    "cloudflare-docs": {
+      "description": "Cloudflare documentation search",
+      "type": "http",
+      "url": "https://docs.mcp.cloudflare.com/mcp"
+    },
+    "cloudflare-observability": {
+      "description": "Cloudflare observability/logs",
+      "type": "http",
+      "url": "https://observability.mcp.cloudflare.com/mcp"
+    },
+    "cloudflare-workers-bindings": {
+      "description": "Cloudflare Workers bindings",
+      "type": "http",
+      "url": "https://bindings.mcp.cloudflare.com/mcp"
+    },
+    "cloudflare-workers-builds": {
+      "description": "Cloudflare Workers builds",
+      "type": "http",
+      "url": "https://builds.mcp.cloudflare.com/mcp"
+    },
     "filesystem": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "$HOME/Documents/GitHub"
+      ],
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/your/projects"],
       "description": "Filesystem operations (set your path)"
     },
-    "git": {
-      "command": "uvx",
-      "args": ["mcp-server-git", "--repository", "path/to/git/repo"]
+    "firecrawl": {
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "command": "npx",
+      "description": "Web scraping and crawling",
+      "env": {
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
+      }
     },
     "github": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub operations - PRs, issues, repos",
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_PAT_HERE"
-      },
-      "description": "GitHub operations - PRs, issues, repos"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "magic": {
+      "args": [
+        "-y",
+        "@magicuidesign/mcp@latest"
+      ],
+      "command": "npx",
+      "description": "Magic UI components"
     },
     "memory": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
       "description": "Persistent memory across sessions"
     },
-    "sequential-thinking": {
+    "notebooklm": {
+      "args": [
+        "notebooklm-mcp@latest"
+      ],
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "env": {},
+      "type": "stdio"
+    },
+    "obsidian": {
+      "args": [
+        "@mauricio.wolff/mcp-obsidian@latest",
+        "$HOME/Desktop/Page-Fixes/test-obsidian"
+      ],
+      "command": "npx",
+      "env": {}
+    },
+    "playwright": {
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "command": "npx",
+      "env": {
+        "HEADED": "${HEADED}"
+      },
+      "type": "stdio"
+    },
+    "railway": {
+      "args": [
+        "-y",
+        "@railway/mcp-server"
+      ],
+      "command": "npx",
+      "description": "Railway deployments"
+    },
+    "sequential-thinking": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "command": "npx",
       "description": "Chain-of-thought reasoning"
     },
-    "time": {
-      "command": "uvx",
-      "args": ["mcp-server-time"]
+    "stitch": {
+      "headers": {
+        "X-Goog-Api-Key": "${STITCH_X_GOOG_API_KEY}"
+      },
+      "type": "http",
+      "url": "https://stitch.googleapis.com/mcp"
+    },
+    "supabase": {
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--project-ref=YOUR_PROJECT_REF"
+      ],
+      "command": "npx",
+      "description": "Supabase database operations"
+    },
+    "vercel": {
+      "description": "Vercel deployments and projects",
+      "type": "http",
+      "url": "https://mcp.vercel.com"
     }
-  },
-  "_comments": {
-    "usage": "Copy the servers you need to your ~/.claude.json mcpServers section",
-    "env_vars": "Replace YOUR_*_HERE placeholders with actual values",
-    "disabling": "Use disabledMcpServers array in project config to disable per-project",
-    "context_warning": "Keep under 10 MCPs enabled to preserve context window"
   }
 }

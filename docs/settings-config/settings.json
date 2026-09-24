@@ -1,0 +1,494 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "WebFetch(*)",
+      "Plugin:context-mode:context-mode - ctx_execute",
+      "Plugin:context-mode:context-mode - ctx_execute_file",
+      "Plugin:context-mode:context-mode - ctx_batch_execute",
+      "Plugin:context-mode:context-mode - ctx_index",
+      "Plugin:context-mode:context-mode - ctx_search",
+      "Plugin:context-mode:context-mode - ctx_fetch_and_index",
+      "Plugin:context-mode:context-mode - ctx_stats",
+      "Plugin:context-mode:context-mode - ctx_doctor",
+      "Plugin:context-mode:context-mode - ctx_upgrade",
+      "Bash(git status)",
+      "Bash(git status *)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "Bash(git show *)",
+      "Bash(git branch *)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git stash *)",
+      "Bash(git fetch *)",
+      "Bash(git pull *)",
+      "Bash(git merge *)",
+      "Bash(git rebase *)",
+      "Bash(git cherry-pick *)",
+      "Bash(git tag *)",
+      "Bash(git remote *)",
+      "Bash(git rev-parse *)",
+      "Bash(git ls-files *)",
+      "Bash(npm *)",
+      "Bash(bun *)",
+      "Bash(pnpm *)",
+      "Bash(yarn *)",
+      "Bash(ts-node *)",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(pip list *)",
+      "Bash(pip show *)",
+      "Bash(pipx *)",
+      "Bash(uv *)",
+      "Bash(uvx *)",
+      "Bash(poetry *)",
+      "Bash(conda *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(ag *)",
+      "Bash(awk *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(diff *)",
+      "Bash(tree *)",
+      "Bash(which *)",
+      "Bash(echo *)",
+      "Bash(printf *)",
+      "Bash(less *)",
+      "Bash(cut *)",
+      "Bash(tr *)",
+      "Bash(tee *)",
+      "Bash(basename *)",
+      "Bash(dirname *)",
+      "Bash(realpath *)",
+      "Bash(readlink *)",
+      "Bash(stat *)",
+      "Bash(file *)",
+      "Bash(date *)",
+      "Bash(whoami)",
+      "Bash(uname *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(touch *)",
+      "Bash(cd *)",
+      "Bash(pwd)",
+      "Bash(cargo *)",
+      "Bash(go build *)",
+      "Bash(go run *)",
+      "Bash(go test *)",
+      "Bash(go mod *)",
+      "Bash(go fmt *)",
+      "Bash(go vet *)",
+      "Bash(rustc *)",
+      "Bash(rustup *)",
+      "Bash(gcc *)",
+      "Bash(g++ *)",
+      "Bash(clang *)",
+      "Bash(make *)",
+      "Bash(cmake *)",
+      "Bash(javac *)",
+      "Bash(java *)",
+      "Bash(mvn *)",
+      "Bash(gradle *)",
+      "Bash(prettier *)",
+      "Bash(eslint *)",
+      "Bash(tsc *)",
+      "Bash(jest *)",
+      "Bash(vitest *)",
+      "Bash(mocha *)",
+      "Bash(pytest *)",
+      "Bash(playwright *)",
+      "Bash(cypress *)",
+      "Bash(gh issue *)",
+      "Bash(gh pr *)",
+      "Bash(gh repo *)",
+      "Bash(gh run *)",
+      "Bash(gh api *)",
+      "Bash(jq *)",
+      "Bash(yq *)",
+      "Bash(tar *)",
+      "Bash(zip *)",
+      "Bash(unzip *)",
+      "Bash(gzip *)",
+      "Bash(gunzip *)",
+      "Bash(base64 *)",
+      "Bash(ping *)",
+      "Bash(dig *)",
+      "Bash(nslookup *)",
+      "Bash(ps *)",
+      "Bash(lsof *)",
+      "Bash(sleep *)",
+      "Bash(id *)",
+      "mcp__plugin_context-mode_context-mode__ctx_execute",
+      "mcp__plugin_context-mode_context-mode__ctx_batch_execute"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/*)",
+      "Bash(git push * --force)",
+      "Bash(git push * -f)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -fd *)",
+      "Bash(mkfs *)",
+      "Bash(dd *)",
+      "Bash(fdisk *)",
+      "Bash(parted *)",
+      "Bash(shutdown *)",
+      "Bash(reboot *)",
+      "Bash(init *)",
+      "Bash(systemctl *)",
+      "Read(.env)",
+      "Read(**/.env*)",
+      "Read(**/*secret*)",
+      "Read(**/*credential*)",
+      "Read(~/.ssh/*)",
+      "Read(~/.aws/*)",
+      "Read(~/.gnupg/*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/gsd-check-update.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/gsd-context-monitor.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "TeammateIdle": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "TaskCompleted": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.pixel-agents/hooks/claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node \"$HOME/.claude/hooks/gsd-statusline.js\""
+  },
+  "enabledPlugins": {
+    "hookify@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": false,
+    "code-review@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": false,
+    "security-guidance@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": false,
+    "frontend-design@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "postgres-best-practices@supabase-agent-skills": false,
+    "ecc@ecc": true,
+    "superpowers@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": false,
+    "claude-code-setup@claude-plugins-official": false,
+    "impeccable@impeccable": false,
+    "context-mode@context-mode": true,
+    "design-ops@designer-skills": false,
+    "design-research@designer-skills": false,
+    "design-systems@designer-skills": false,
+    "designer-toolkit@designer-skills": false,
+    "interaction-design@designer-skills": false,
+    "prototyping-testing@designer-skills": false,
+    "ui-design@designer-skills": false,
+    "ux-strategy@designer-skills": false,
+    "typescript-lsp@claude-plugins-official": true,
+    "double-shot-latte@superpowers-marketplace": true,
+    "andrej-karpathy-skills@karpathy-skills": false,
+    "document-skills@anthropic-agent-skills": false,
+    "example-skills@anthropic-agent-skills": false,
+    "php-lsp@claude-plugins-official": true,
+    "understand-anything@understand-anything": true,
+    "karpathy-automatic-claude-md@karpathy-automatic-claude-md": true,
+    "modern-web-guidance@googlechrome": false,
+    "open-code-review@open-code-review": true
+  },
+  "extraKnownMarketplaces": {
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable"
+      }
+    },
+    "context-mode": {
+      "source": {
+        "source": "github",
+        "repo": "mksglu/context-mode"
+      }
+    },
+    "designer-skills": {
+      "source": {
+        "source": "github",
+        "repo": "Owl-Listener/designer-skills"
+      }
+    },
+    "karpathy-skills": {
+      "source": {
+        "source": "github",
+        "repo": "forrestchang/andrej-karpathy-skills"
+      }
+    },
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
+      }
+    },
+    "understand-anything": {
+      "source": {
+        "source": "github",
+        "repo": "Lum1104/Understand-Anything"
+      }
+    },
+    "karpathy-automatic-claude-md": {
+      "source": {
+        "source": "github",
+        "repo": "twebdevemt/karpathy-automatic-claude-md-plugin"
+      }
+    },
+    "googlechrome": {
+      "source": {
+        "source": "github",
+        "repo": "GoogleChrome/modern-web-guidance"
+      },
+      "autoUpdate": true
+    },
+    "ecc": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/affaan-m/ECC.git"
+      }
+    },
+    "open-code-review": {
+      "source": {
+        "source": "github",
+        "repo": "alibaba/open-code-review"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "skipWorkflowUsageWarning": true,
+  "agentPushNotifEnabled": true,
+  "skillOverrides": {
+    "ab-test-setup": "off",
+    "agent-browser": "off",
+    "analytics-tracking": "off",
+    "ask-me-questions-for-context": "off",
+    "canvas-design": "off",
+    "competitor-alternatives": "off",
+    "critical-thinking-partner": "off",
+    "deepsec": "off",
+    "email-sequence": "off",
+    "embedded-captions": "off",
+    "faceless-explainer": "off",
+    "figma": "off",
+    "find-skills": "off",
+    "form-cro": "off",
+    "free-tool-strategy": "off",
+    "general-video": "off",
+    "hyperframes": "off",
+    "hyperframes-animation": "off",
+    "hyperframes-cli": "off",
+    "hyperframes-core": "off",
+    "hyperframes-creative": "off",
+    "hyperframes-keyframes": "off",
+    "hyperframes-registry": "off",
+    "launch-strategy": "off",
+    "marketing-ideas": "off",
+    "marketing-psychology": "off",
+    "media-use": "off",
+    "music-to-video": "off",
+    "onboarding-cro": "off",
+    "page-cro": "off",
+    "paid-ads": "off",
+    "paywall-upgrade-cro": "off",
+    "popup-cro": "off",
+    "pr-to-video": "off",
+    "pricing-strategy": "off",
+    "product-launch-video": "off",
+    "referral-program": "off",
+    "remotion-to-hyperframes": "off",
+    "schema-markup": "off",
+    "signup-flow-cro": "off",
+    "slideshow": "off",
+    "social-content": "off",
+    "talking-head-recut": "off",
+    "ui-ux-pro-max": "off"
+  },
+  "feedbackDrafts": "off",
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "high"
+    }
+  }
+}

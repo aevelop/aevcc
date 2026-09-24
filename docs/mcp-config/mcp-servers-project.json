@@ -1,0 +1,36 @@
+{
+  "$HOME": {
+    "notebooklm": {
+      "args": [
+        "notebooklm-mcp@latest"
+      ],
+      "command": "npx",
+      "env": {},
+      "type": "stdio"
+    }
+  },
+  "$HOME/Desktop/Page Fixes": {
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "playwright": {
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "command": "npx",
+      "env": {},
+      "type": "stdio"
+    }
+  },
+  "$HOME/Desktop/Page-Fixes": {
+    "trigger": {
+      "args": [
+        "trigger.dev@4.4.5",
+        "mcp",
+        "--dev-only"
+      ],
+      "command": "npx"
+    }
+  }
+}

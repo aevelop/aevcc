@@ -1,0 +1,13 @@
+anthropic-agent-skills anthropics/skills
+claude-plugins-official anthropics/claude-plugins-official
+context-mode mksglu/context-mode
+designer-skills Owl-Listener/designer-skills
+ecc https://github.com/affaan-m/ECC.git
+googlechrome GoogleChrome/modern-web-guidance
+impeccable pbakaus/impeccable
+karpathy-automatic-claude-md twebdevemt/karpathy-automatic-claude-md-plugin
+karpathy-skills forrestchang/andrej-karpathy-skills
+supabase-agent-skills supabase/agent-skills
+superpowers-marketplace obra/superpowers-marketplace
+understand-anything Lum1104/Understand-Anything
+open-code-review alibaba/open-code-review

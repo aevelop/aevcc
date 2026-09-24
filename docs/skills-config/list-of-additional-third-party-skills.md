@@ -54,4 +54,6 @@ npx skills add https://github.com/coreyhaines31/marketingskills --skill schema-m
 npx skills add https://github.com/coreyhaines31/marketingskills --skill seo-audit
 npx skills add https://github.com/coreyhaines31/marketingskills --skill signup-flow-cro
 npx skills add https://github.com/coreyhaines31/marketingskills --skill social-content
+
+npx skills add https://github.com/PleasePrompto/notebooklm-skill
 ```
