@@ -1,5 +1,6 @@
 anthropics/skills canvas-design
 anthropics/skills skill-creator
+cloudflare/security-audit-skill security-audit
 coreyhaines31/marketingskills ab-test-setup
 coreyhaines31/marketingskills analytics-tracking
 coreyhaines31/marketingskills competitor-alternatives
@@ -42,9 +43,17 @@ heygen-com/hyperframes product-launch-video
 heygen-com/hyperframes remotion-to-hyperframes
 heygen-com/hyperframes slideshow
 heygen-com/hyperframes talking-head-recut
+jsmastery-pro/skills architect
+jsmastery-pro/skills audit
+jsmastery-pro/skills check
+jsmastery-pro/skills debug
+jsmastery-pro/skills develop
+jsmastery-pro/skills document
+jsmastery-pro/skills scope
+jsmastery-pro/skills sync
+jsmastery-pro/skills test
 nextlevelbuilder/ui-ux-pro-max-skill ui-ux-pro-max
 supabase/agent-skills supabase-postgres-best-practices
 vercel-labs/agent-browser agent-browser
 vercel-labs/deepsec deepsec
 vercel-labs/skills find-skills
-cloudflare/security-audit-skill security-audit

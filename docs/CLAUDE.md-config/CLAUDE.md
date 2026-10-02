@@ -232,3 +232,4 @@ Planning, design, and ticket breakdown go through the `mattpocock-skills` plugin
 - Keep using superpowers for `test-driven-development`, `systematic-debugging`, `verification-before-completion`, and `using-git-worktrees`. Do not invoke `superpowers:brainstorming`; grilling replaces it.
 - Run `/setup-matt-pocock-skills` once per repo before the first use (GitHub Issues as the tracker, docs under `docs/agents/`).
 - GSD (`/gsd:*`) is uninstalled. Never suggest it.
+- jsmastery-pro/skills (`/scope`, `/audit`, `/architect`, `/develop`, `/check`, `/test`, `/document`, `/sync`, `/debug`) are installed as a complement, not a second spine: use `/audit` and `/sync` to create and keep nested `AGENTS.md` files current, and `/architect` + `/check` when a spec with numbered acceptance criteria is wanted. Do not run `/scope`/`/develop` in place of the grill -> spec -> tickets -> implement flow.

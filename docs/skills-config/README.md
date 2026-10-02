@@ -4,7 +4,7 @@ Four mechanisms, installed independently.
 
 | Mechanism | Count | Source of truth | Install |
 | --------- | ----- | --------------- | ------- |
-| `skills` CLI (vercel-labs) -> `~/.agents/skills/*`, symlinked into `~/.claude/skills/` | 50 | [skills.txt](skills.txt) (`source skill`) | `30-skills.sh` |
+| `skills` CLI (vercel-labs) -> `~/.agents/skills/*`, symlinked into `~/.claude/skills/` (newer CLI versions copy straight into `~/.claude/skills/`) | 59 | [skills.txt](skills.txt) (`source skill`) | `30-skills.sh` |
 | Vendored in this repo -> copied to `~/.claude/skills/` | 3 | [`/skills`](../../skills) | `30-skills.sh` |
 | Git clone -> `~/.claude/skills/notebooklm` | 1 | PleasePrompto/notebooklm-skill | `30-skills.sh` |
 | Plugin-bundled (superpowers, ecc, designer-skills, impeccable, anthropic skills, ...) | ~200 | [plugins-config](../plugins-config/README.md) | `20-plugins.sh` |
@@ -37,6 +37,7 @@ git clone https://github.com/PleasePrompto/notebooklm-skill ~/.claude/skills/not
 | nextlevelbuilder/ui-ux-pro-max-skill | ui-ux-pro-max |
 | supabase/agent-skills | supabase-postgres-best-practices |
 | cloudflare/security-audit-skill | security-audit |
+| jsmastery-pro/skills | 9: scope, audit, architect, develop, check, test, document, sync, debug ([Engineering Workflow Skills](https://github.com/jsmastery-pro/skills), [guide](https://github.com/jsmastery-pro/skills/blob/main/docs/workflow-guide.md)). Idea -> shipped flow with state in repo files: `/audit` and `/sync` create and maintain nested `AGENTS.md` (+ `CLAUDE.md` pointer), `/architect` writes specs with numbered acceptance criteria to `docs/specs/`, `/scope` keeps `docs/scope/`, `/check verify` runs the real app and `/check review` reads the diff on a second model. Installed 2026-10-02 as a whole repo (`--skill '*'`). Default planning flow is still mattpocock-skills (global CLAUDE.md routing rule); reach for `/audit` + `/sync` when a repo needs AGENTS.md context files, and `/architect` + `/check` when a spec with numbered acceptance criteria is wanted. |
 
 ## Vendored (hand-made, no upstream)
 
@@ -62,7 +63,7 @@ jq '.skillOverrides["copywriting"] = "off"' ~/.claude/settings.json > /tmp/s && 
 ## Verify
 
 ```bash
-ls ~/.claude/skills | wc -l                         # 56 on the reference machine
+ls ~/.claude/skills | wc -l                         # 65 on the reference machine
 jq '.skills | length' ~/.agents/.skill-lock.json
 ```
 
