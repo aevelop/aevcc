@@ -153,6 +153,8 @@ jq ".projects // {} | to_entries
   echo "claude $(claude --version 2>/dev/null | awk '{print $1}')"
   echo "node $(node -v 2>/dev/null || echo -)"
   echo "bun $(bun -v 2>/dev/null || echo -)"
+  echo "uv-tools:"
+  uv tool list 2>/dev/null | grep -E '^[a-z]' | sed 's/^/  /'
   echo "npm-global:"
   npm ls -g --depth=0 2>/dev/null | tail -n +2 | sed -E 's/^[^@A-Za-z]*/  /' | grep -v '^ *$'
 } > "$D/cli-config/versions.txt"

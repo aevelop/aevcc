@@ -17,13 +17,13 @@ bash scripts/install/20-plugins.sh # or any single step
 
 | Step | Concern | Doc | Script |
 | ---- | ------- | --- | ------ |
-| 00 | Claude Code CLI, brew tools, npm globals | [cli-config](cli-config/README.md) | `00-cli.sh` |
+| 00 | Claude Code CLI, brew tools, npm globals, uv + serena-agent | [cli-config](cli-config/README.md) | `00-cli.sh` |
 | 10 | Global `~/.claude/CLAUDE.md` | [CLAUDE.md-config](CLAUDE.md-config/README.md) | `10-claude-md.sh` |
-| 20 | 14 marketplaces, 37 plugins (18 enabled, 19 installed-but-disabled) | [plugins-config](plugins-config/README.md) | `20-plugins.sh` |
+| 20 | 15 marketplaces, 38 plugins (19 enabled, 19 installed-but-disabled) | [plugins-config](plugins-config/README.md) | `20-plugins.sh` |
 | 30 | 50 `skills` CLI skills + 3 vendored + notebooklm | [skills-config](skills-config/README.md) | `30-skills.sh` |
 | 40 | Get Shit Done (commands, agents, hooks, statusline) | [gsd-config](gsd-config/README.md) | `40-gsd.sh` |
 | 50 | `settings.json` (model, effort, permissions, hooks) | [settings-config](settings-config/README.md) | `50-settings.sh` |
-| 60 | 18 user-scope MCP servers | [mcp-config](mcp-config/README.md) | `60-mcp.sh` |
+| 60 | 19 user-scope MCP servers | [mcp-config](mcp-config/README.md) | `60-mcp.sh` |
 | 70 | Slash commands (`/nasa-code`, `/autopush`, `/overnight`) | [commands-config](commands-config/README.md) | `70-commands.sh` |
 | 80 | Agents (GSD-owned, disabled on reference machine; agency agents opt-in) | [agents-config](agents-config/README.md) | `80-agents.sh` (opt-in) |
 | -- | Hooks: where each one comes from | [hooks-config](hooks-config/README.md) | covered by 20, 40, 50 |
