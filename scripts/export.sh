@@ -98,7 +98,7 @@ review() {
 
 # --- produce everything into $STAGE (same layout as the repo) ------------------------------------------
 D="$STAGE/docs"
-mkdir -p "$D"/{settings-config,CLAUDE.md-config,plugins-config,skills-config,gsd-config,mcp-config,cli-config} \
+mkdir -p "$D"/{settings-config,CLAUDE.md-config,plugins-config,skills-config,mcp-config,cli-config} \
          "$STAGE/skills" "$STAGE/commands"
 
 # 1. settings.json. autoMode is dropped: its rules and notes describe private projects, repos and secret names.
@@ -138,9 +138,6 @@ for d in "$CL"/skills/*/; do
   echo "WARN: ~/.claude/skills/$n is not tracked (add to CUSTOM_SKILLS or document its installer)"
 done
 
-# 6. GSD version
-cp "$CL/get-shit-done/VERSION" "$D/gsd-config/VERSION"
-
 # 7. MCP servers: user scope + project scope. Only .mcpServers is read from ~/.claude.json.
 jq ".mcpServers // {} | $REDACT | {mcpServers: .}" "$HOME/.claude.json" | dehome \
   > "$D/mcp-config/mcp-servers.json"
@@ -166,7 +163,6 @@ review docs/CLAUDE.md-config/home-CLAUDE.md    prose
 review docs/plugins-config/marketplaces.txt    lines
 review docs/plugins-config/plugins.txt         lines
 review docs/skills-config/skills.txt           lines-whole
-review docs/gsd-config/VERSION                 prose
 review docs/mcp-config/mcp-servers.json        json
 review docs/mcp-config/mcp-servers-project.json json
 review docs/cli-config/versions.txt            lines

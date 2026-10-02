@@ -6,7 +6,7 @@ Production-ready agents, skills, hooks, commands, rules, plugins, and MCP config
 
 ## Reproduce the full machine setup
 
-Everything installed on the reference machine (CLI, plugins, skills, GSD, settings, MCP servers, commands) is
+Everything installed on the reference machine (CLI, plugins, skills, settings, MCP servers, commands) is
 documented per concern in [docs/README.md](docs/README.md), each with its own install script:
 
 ```bash

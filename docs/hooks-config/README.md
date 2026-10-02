@@ -6,9 +6,6 @@ Nothing to install separately -- every hook arrives with another step. This maps
 
 | Event | Command | Owner | Needs |
 | ----- | ------- | ----- | ----- |
-| SessionStart | `node "$HOME/.claude/hooks/gsd-check-update.js"` | GSD (step 40) | -- |
-| PostToolUse | `node "$HOME/.claude/hooks/gsd-context-monitor.js"` | GSD (step 40) | -- |
-| statusLine | `node "$HOME/.claude/hooks/gsd-statusline.js"` | GSD (step 40) | -- |
 | Notification | `osascript -e 'display notification ...'` | hand-added | macOS |
 | 12 events: Notification, SessionStart, PostToolUse, SessionEnd, Stop, PermissionRequest, PreToolUse, PostToolUseFailure, SubagentStart, SubagentStop, TeammateIdle, TaskCompleted | `node "$HOME/.pixel-agents/hooks/claude-hook.js"` | Pixel Agents VS Code extension | `~/.pixel-agents` -- the extension registers these itself; `50-settings.sh` drops them when the dir is absent |
 

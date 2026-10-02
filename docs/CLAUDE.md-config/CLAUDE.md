@@ -105,276 +105,6 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ---
 
-## Model & Settings
-
-- **Default model**: opus
-- **Platform**: macOS (Darwin)
-- **Extended thinking**: Enabled by default (up to 31,999 tokens)
-- **Toggle thinking**: Option+T (macOS)
-- **Verbose thinking output**: Ctrl+O
-
----
-
-## Installed Plugins (16 active)
-
-All plugins are user-scoped and loaded from `~/.claude/plugins/cache/`.
-
-| Plugin | Source | Purpose |
-|--------|--------|---------|
-| hookify | claude-plugins-official | User-configurable hooks from `.local.md` files |
-| code-simplifier | claude-plugins-official | Simplify and refine code for clarity and maintainability |
-| code-review | claude-plugins-official | Automated code review with specialized agents |
-| pr-review-toolkit | claude-plugins-official | PR review agents (comments, tests, types, silent failures) |
-| security-guidance | claude-plugins-official | Security reminder hook on Edit/Write operations |
-| context7 | claude-plugins-official | MCP server for up-to-date library documentation (Upstash Context7) |
-| commit-commands | claude-plugins-official | Git workflow: commit, push, PR creation, branch cleanup |
-| frontend-design | claude-plugins-official | Distinctive, production-grade UI/UX implementation |
-| feature-dev | claude-plugins-official | Guided feature development with architecture focus |
-| ralph-loop | claude-plugins-official | Self-referential AI loops for persistent task completion |
-| explanatory-output-style | claude-plugins-official | Educational insights on implementation choices |
-| postgres-best-practices | supabase-agent-skills | Comprehensive Postgres performance optimization (31 rules) |
-| ecc | ecc | Battle-tested agents, skills, hooks, commands, and rules (v1.4.1) |
-| superpowers | claude-plugins-official | Core skills: TDD, debugging, collaboration, verification (v4.2.0) |
-| claude-md-management | claude-plugins-official | CLAUDE.md auditing and improvement |
-| claude-code-setup | claude-plugins-official | Codebase automation recommendations |
-
----
-
-## MCP Servers
-
-### Context7 (Library Documentation)
-- **Purpose**: Fetch up-to-date documentation and code examples for any library
-- **Usage**: Use `resolve-library-id` to find a library, then `query-docs` to get docs
-- **When to use**: Before implementing with unfamiliar SDKs, frameworks, or APIs
-- **Command**: `npx -y @upstash/context7-mcp`
-
----
-
-## Active Hooks
-
-Hooks fire automatically on specific events. These are contributed by the installed plugins.
-
-### PreToolUse Hooks
-| Hook | Trigger | Behavior |
-|------|---------|----------|
-| Block dev servers outside tmux | `npm/pnpm/yarn/bun run dev` | BLOCKS execution; requires tmux session |
-| Tmux reminder | `npm/pnpm/yarn install/test`, `cargo build`, `make`, `docker`, `pytest`, `vitest`, `playwright` | Warning to use tmux for persistence |
-| Git push review | `git push` | Reminder to review changes before pushing |
-| Block unnecessary .md files | Write to `.md`/`.txt` (except README, CLAUDE, AGENTS, CONTRIBUTING) | BLOCKS creation of random doc files |
-| Suggest manual compaction | Any Edit/Write | Suggests compaction at logical intervals |
-| Security reminder | Edit/Write/MultiEdit | Warns about potential security issues in file edits |
-| Hookify rules | All PreToolUse | Runs user-configured hookify rules from `.local.md` files |
-
-### PostToolUse Hooks
-| Hook | Trigger | Behavior |
-|------|---------|----------|
-| PR URL logger | Bash with `gh pr create` | Logs PR URL and provides review command |
-| Prettier auto-format | Edit on `.ts`/`.tsx`/`.js`/`.jsx` files | Auto-formats with Prettier after edits |
-| TypeScript checker | Edit on `.ts`/`.tsx` files | Runs `tsc --noEmit` and reports errors for the edited file |
-| Console.log warning | Edit on `.ts`/`.tsx`/`.js`/`.jsx` files | Warns about `console.log` statements |
-| Hookify rules | All PostToolUse | Runs user-configured hookify rules |
-
-### Stop Hooks
-| Hook | Trigger | Behavior |
-|------|---------|----------|
-| Console.log check | Every response end | Checks modified files for leftover `console.log` |
-| Ralph loop | Every response end | Continues self-referential loop if active |
-| Hookify rules | Every stop | Runs user-configured hookify rules |
-
-### Session Lifecycle Hooks
-| Hook | Event | Behavior |
-|------|-------|----------|
-| ECC session start | SessionStart | Loads previous context and detects package manager |
-| Superpowers session start | SessionStart | Initializes superpowers skill system |
-| Explanatory mode | SessionStart | Activates educational insights mode |
-| ECC session end | SessionEnd | Persists session state |
-| Pattern extraction | SessionEnd | Evaluates session for extractable patterns |
-| Pre-compact save | PreCompact | Saves state before context compaction |
-
-### Other Hooks
-| Hook | Event | Behavior |
-|------|-------|----------|
-| Hookify prompt submit | UserPromptSubmit | Runs user-configured hookify rules on prompt submission |
-
----
-
-## Registered Agents
-
-These agents are available via the Task tool with their respective plugin prefixes.
-
-### ECC Agents (via `ecc:` prefix)
-| Agent | Purpose |
-|-------|---------|
-| architect | System design, boundaries, interfaces, architectural decisions |
-| build-error-resolver | Build/TypeScript error resolution with minimal diffs |
-| code-reviewer | Comprehensive code review (bugs, security, quality, conventions) |
-| doc-updater | Documentation and codemap maintenance |
-| e2e-runner | End-to-end testing with Playwright |
-| planner | Implementation planning, risk assessment, step-by-step plans |
-| refactor-cleaner | Dead code cleanup, consolidation, unused dependency removal |
-| security-reviewer | Vulnerability detection, OWASP Top 10, authn/authz review |
-| tdd-guide | Test-driven development enforcement (80%+ coverage) |
-
-### Feature Dev Agents (via `feature-dev:` prefix)
-| Agent | Purpose |
-|-------|---------|
-| code-reviewer | Bug, logic, security, and quality review with confidence filtering |
-| code-explorer | Deep codebase analysis, execution path tracing, architecture mapping |
-| code-architect | Feature architecture design with implementation blueprints |
-
-### PR Review Toolkit Agents (via `pr-review-toolkit:` prefix)
-| Agent | Purpose |
-|-------|---------|
-| code-reviewer | Adherence to guidelines and style guides |
-| silent-failure-hunter | Identify silent failures and inadequate error handling |
-| code-simplifier | Simplify code for clarity while preserving functionality |
-| comment-analyzer | Verify comment accuracy and long-term maintainability |
-| pr-test-analyzer | Test coverage quality and completeness |
-| type-design-analyzer | Type design analysis for encapsulation and invariants |
-
-### Superpowers Agents (via `superpowers:` prefix)
-| Agent | Purpose |
-|-------|---------|
-| code-reviewer | Reviews against original plan and coding standards |
-
-### Additional 130+ ECC Agent Definitions
-The ECC plugin includes 130+ specialist agent definitions at `~/.claude/plugins/cache/ecc/ecc/1.4.1/agents/` covering:
-- **Language experts**: typescript-pro, python-pro, golang-pro, rust-engineer, php-pro, java-architect, etc.
-- **Domain specialists**: database-optimizer, devops-engineer, ml-engineer, security-auditor, etc.
-- **Architecture roles**: cloud-architect, microservices-architect, graphql-architect, etc.
-- **Business roles**: product-manager, business-analyst, project-manager, etc.
-
----
-
-## Available Skills
-
-Skills are invoked via `/plugin:skill-name` syntax or triggered automatically by the plugins.
-
-### Superpowers Skills (`/superpowers:*`)
-| Skill | Trigger Pattern | Purpose |
-|-------|----------------|---------|
-| brainstorming | Before creative/feature work | Explore intent, requirements, and design before implementation |
-| test-driven-development | Before writing implementation code | TDD workflow enforcement |
-| systematic-debugging | On bugs/test failures | Root-cause analysis before proposing fixes |
-| writing-plans | When planning multi-step tasks | Structured implementation plans |
-| executing-plans | When executing a written plan | Plan execution with review checkpoints |
-| dispatching-parallel-agents | 2+ independent tasks | Parallel agent orchestration |
-| using-git-worktrees | Feature isolation | Create isolated git worktrees |
-| verification-before-completion | Before claiming completion | Evidence-based verification |
-| requesting-code-review | After completing features | Validate work meets requirements |
-| receiving-code-review | When receiving review feedback | Technical rigor in responding to reviews |
-| finishing-a-development-branch | After implementation complete | Merge, PR, or cleanup guidance |
-| subagent-driven-development | Executing plans with independent tasks | Multi-agent parallel implementation |
-| writing-skills | Creating/editing skills | Skill authoring best practices |
-| using-superpowers | Session start | How to find and use skills |
-
-### ECC Skills (`/ecc:*`)
-| Skill | Purpose |
-|-------|---------|
-| plan | Requirements assessment, risk analysis, step-by-step implementation plan |
-| tdd | Test-driven development workflow with 80%+ coverage |
-| e2e | Generate and run E2E tests with Playwright |
-| security-review | Comprehensive security checklist and patterns |
-| configure-ecc | Interactive installer for ECC components |
-| instinct-status | Show learned instincts with confidence levels |
-| instinct-export | Export instincts for sharing |
-| instinct-import | Import instincts from other sources |
-| evolve | Cluster instincts into skills/commands/agents |
-| skill-create | Extract coding patterns from git history |
-| continuous-learning | Extract reusable patterns from sessions |
-| continuous-learning-v2 | Instinct-based learning with confidence scoring |
-| strategic-compact | Suggests compaction at logical intervals |
-| iterative-retrieval | Progressive context retrieval refinement |
-| eval-harness | Evaluation framework for eval-driven development |
-| go-build | Fix Go build errors and linter issues |
-| go-review | Go code review for idiomatic patterns |
-| go-test | TDD workflow for Go with table-driven tests |
-| python-review | Python code review for PEP 8, type hints, security |
-| django-security | Django security best practices |
-| django-patterns | Django architecture, DRF, ORM best practices |
-| django-tdd | Django testing with pytest-django |
-| springboot-patterns | Spring Boot architecture patterns |
-| springboot-security | Spring Security best practices |
-| springboot-tdd | TDD for Spring Boot with JUnit 5 |
-| golang-patterns | Idiomatic Go patterns and best practices |
-| golang-testing | Go testing with TDD methodology |
-| python-patterns | Pythonic idioms, PEP 8, type hints |
-| python-testing | Python testing with pytest |
-| frontend-patterns | React, Next.js, state management |
-| backend-patterns | Node.js, Express, Next.js API routes |
-| postgres-patterns | PostgreSQL optimization and schema design |
-| clickhouse-io | ClickHouse analytics and data engineering |
-| coding-standards | Universal TypeScript/JavaScript/React/Node.js standards |
-| jpa-patterns | JPA/Hibernate patterns for Spring Boot |
-| tdd-workflow | TDD enforcement with 80%+ coverage |
-| nutrient-document-processing | Document processing via Nutrient DWS API |
-
-### Other Plugin Skills
-| Skill | Plugin | Purpose |
-|-------|--------|---------|
-| `/frontend-design:frontend-design` | frontend-design | Distinctive, production-grade frontend interfaces |
-| `/feature-dev:feature-dev` | feature-dev | Guided feature development with codebase understanding |
-| `/code-review:code-review` | code-review | Code review a pull request |
-| `/pr-review-toolkit:review-pr` | pr-review-toolkit | Comprehensive PR review using specialized agents |
-| `/commit-commands:commit` | commit-commands | Create a git commit |
-| `/commit-commands:commit-push-pr` | commit-commands | Commit, push, and open a PR |
-| `/commit-commands:clean_gone` | commit-commands | Clean up [gone] branches |
-| `/ralph-loop:ralph-loop` | ralph-loop | Start persistent self-referential loop |
-| `/ralph-loop:cancel-ralph` | ralph-loop | Cancel active Ralph Loop |
-| `/hookify:hookify` | hookify | Create hooks from conversation analysis |
-| `/hookify:list` | hookify | List configured hookify rules |
-| `/hookify:configure` | hookify | Enable/disable hookify rules |
-| `/hookify:writing-rules` | hookify | Guide on hookify rule syntax |
-| `/claude-md-management:revise-claude-md` | claude-md-management | Update CLAUDE.md with session learnings |
-| `/claude-md-management:claude-md-improver` | claude-md-management | Audit and improve CLAUDE.md files |
-| `/claude-code-setup:claude-automation-recommender` | claude-code-setup | Analyze codebase and recommend automations |
-| `/postgres-best-practices:postgres-best-practices` | postgres-best-practices | Postgres optimization best practices |
-| `/supabase-postgres-best-practices` | supabase-agent-skills | Postgres optimization (skill directory) |
-| `/keybindings-help` | built-in | Customize keyboard shortcuts |
-
----
-
-## ECC Commands (Slash Commands)
-
-Available via `/ecc:command-name`:
-
-| Command | Purpose |
-|---------|---------|
-| build-fix | Fix build/toolchain/type failures |
-| code-review | Review code for quality and standards |
-| e2e | Generate and run end-to-end tests |
-| eval | Evaluate code/session quality |
-| evolve | Evolve instincts into skills/agents |
-| go-build | Fix Go build errors |
-| go-review | Go code review |
-| go-test | Go TDD workflow |
-| instinct-export | Export learned instincts |
-| instinct-import | Import instincts |
-| instinct-status | Show instinct confidence levels |
-| learn | Extract patterns from current session |
-| multi-backend | Multi-agent backend implementation |
-| multi-execute | Multi-agent parallel execution |
-| multi-frontend | Multi-agent frontend implementation |
-| multi-plan | Multi-agent planning |
-| multi-workflow | Multi-agent workflow orchestration |
-| orchestrate | Agent orchestration |
-| plan | Create implementation plan (WAIT for user CONFIRM) |
-| python-review | Python code review |
-| refactor-clean | Dead code cleanup and consolidation |
-| sessions | Session management |
-| setup-pm | Setup project management |
-| skill-create | Extract patterns from git history into SKILL.md |
-| tdd | Test-driven development workflow |
-| test-coverage | Analyze test coverage |
-| update-codemaps | Update documentation codemaps |
-| update-docs | Update project documentation |
-| verify | Verify completion with evidence |
-| checkpoint | Create a checkpoint |
-| autopush | Auto-push commits |
-| pm2 | PM2 process management |
-
----
-
 ## Rules & Guidelines
 
 ### Coding Style (from ECC rules)
@@ -422,23 +152,6 @@ If security issue found: STOP immediately, use security-reviewer agent, fix befo
 
 ---
 
-## Postgres Best Practices (Supabase Skill)
-
-Comprehensive optimization across 8 categories with 31 individual rules:
-
-1. **Query Performance** (5 rules): Missing indexes, index types, composite indexes, covering indexes, partial indexes
-2. **Connection Management** (4 rules): Idle timeouts, connection limits, pooling, prepared statements
-3. **Security & RLS** (3 rules): Least privilege, RLS basics, RLS performance
-4. **Schema Design** (5 rules): Data types, FK indexes, partitioning, primary keys, lowercase identifiers
-5. **Concurrency & Locking** (4 rules): Short transactions, deadlock prevention, advisory locks, skip locked
-6. **Data Access Patterns** (4 rules): Batch inserts, N+1 elimination, cursor pagination, upsert
-7. **Monitoring & Diagnostics** (3 rules): pg_stat_statements, vacuum/analyze, explain analyze
-8. **Advanced Features** (2 rules): JSONB indexing, full-text search
-
-Detailed rules stored at `~/.claude/skills/supabase-postgres-best-practices/rules/`.
-
----
-
 ## Behavioral Guidelines
 
 ### Delegation Strategy
@@ -467,30 +180,55 @@ When active (triggered by `/ralph-loop:ralph-loop`), Claude continues working au
 
 ---
 
-## Language-Specific Rules
-
-The ECC plugin includes language-specific rules at `~/.claude/plugins/cache/ecc/ecc/1.4.1/rules/`:
-
-- **Common**: coding-style, security, git-workflow, testing, performance, patterns, hooks, agents
-- **TypeScript**: coding-style, security, testing, patterns, hooks
-- **Python**: coding-style, security, testing, patterns, hooks
-- **Go**: coding-style, security, testing, patterns, hooks
-
-These rules are loaded contextually based on the project being worked on.
-
----
-
-## File Paths Reference
-
-| Path | Purpose |
-|------|---------|
-| `~/.claude/settings.json` | Main settings (model, enabled plugins) |
-| `~/.claude/CLAUDE.md` | This file (global instructions) |
-| `~/.claude/plugins/` | Plugin cache and marketplace configurations |
-| `~/.claude/skills/` | Custom skill definitions |
-| `~/.claude/plans/` | Session planning documents |
-| `~/.claude/projects/` | Per-project session data and memory |
-| `~/.claude/memory/` | Auto-memory directory (MEMORY.md persists across sessions) |
-
 # My Custom Instructions to Every Prompt in Every Codebase
 **Ask questions whenever in doubt instead of providing formulaic response: Do it when you think the go-to response is vague and you could use some clarification to create a better response. Always use an interactive (clickable) interface for questions instead of numbering them.**
+
+## Claude in Chrome: use a separate window, never my working window
+
+My working Chrome windows are usually tiled (Split View), so they cannot be resized and I do not want automation tabs mixed into them. The extension currently opens its MCP tab group as tabs in my active window (it used to open a separate window).
+
+Rules for every session that uses browser automation:
+- Browser automation must run in its own Chrome window, separate from the windows I am working in.
+- The tab-vs-window choice belongs to the Claude in Chrome extension and cannot be changed via tool calls (verified: window.open popups are blocked even from automation clicks). So: right after creating the first MCP tab, if window-level operations (resize_window, mobile-viewport testing) will be needed, pause and ask me to drag the MCP tab group out into its own window before continuing. The group keeps working after the move.
+- After any resize_window call, verify it took effect (screenshot dimensions). If the window did not resize, it is one of my tiled working windows: STOP, do not retry, and ask me to move the MCP tab group to its own window.
+- Never resize, move, or close a window that contains my own tabs.
+
+## Ollama Cloud: outsource heavy non-coding work
+
+Goal: save Claude tokens for coding. Applies to every session and every agent/subagent, in any folder.
+
+**What qualifies:** non-coding tasks that would cost many tokens: long-form text creation or rewriting, bulk/repetitive text transformations, translation, summarizing large documents, reformatting, data-to-prose. Rough threshold: more than ~1,500 words of output, or a large input file Claude would otherwise have to read. Never outsource code writing, code review, debugging, or anything needing tool access. Small tasks are not worth the overhead; do them directly.
+
+**Ask first:** before every outsourced task, ask me for approval (interactive question) naming the task and the model you picked. Do not outsource silently.
+
+**Never send:** secrets, credentials, API keys, .env contents, or personal data of customers/students/patients (PII/PHI). If the input contains any, do the task yourself or strip it first.
+
+**How:** use the helper `~/.claude/bin/ollama-cloud` (reads the API key from macOS Keychain service `ollama-cloud-api-key`; never print, log, or copy the key anywhere).
+
+```
+~/.claude/bin/ollama-cloud --list-models
+~/.claude/bin/ollama-cloud --model MODEL --prompt-file PROMPT.md [--system TEXT] [--input-file FILE ...] --out RESULT.md
+```
+
+- Pass large inputs with `--input-file` so they go straight to Ollama; do not read them into context first.
+- Write the prompt to a file with full context: purpose, audience, tone, format, length, constraints. The remote model knows nothing about this conversation.
+- For batches, run one call per item (parallel in background is fine) rather than one giant prompt.
+
+**Model choice:** pick the best model for the task. I reviewed the prices and all of them are far cheaper than Claude, so do not over-optimize for cost; use it only as a tiebreaker when quality is comparable. Starting points (prices per 1M tokens in/out as of 2026-09; check https://ollama.com/pricing and `--list-models` if a model is missing or retired):
+- Simple bulk/repetitive transforms: `gpt-oss:20b` ($0.07/$0.30), `nemotron-3-nano:30b` ($0.06/$0.24)
+- Most tasks: `deepseek-v4.1-flash` ($0.15/$0.60), `gpt-oss:120b` ($0.15/$0.60), `glm-5.3-flash` ($0.15/$0.50)
+- Quality-critical writing: `deepseek-v4-pro:0813` ($0.66/$1.98), `glm-5.3` ($1.40/$4.40), `kimi-k2.6` ($0.95/$4.00), `mistral-large-3:675b` ($0.50/$1.50)
+- Top tier, only when the task really needs it: `kimi-k3` ($3.00/$15.00)
+
+**Verify (mandatory):** after the result is back, you (Claude, active model) must read the output file and check it is well written, accurate to the source, complete (not truncated), in the requested format/language, and fits the purpose it was created for. Fix small issues yourself. If it fails, retry once with a sharper prompt or a better-tier model; if it still fails, do the task yourself and tell me. Report which model was used and the token counts from the helper's summary line.
+
+## Engineering workflow: mattpocock-skills is the spine
+
+Planning, design, and ticket breakdown go through the `mattpocock-skills` plugin, not through superpowers' brainstorming or ecc's PRP/epic/orchestration flows (those remain installed for their specialist agents only).
+
+- New feature or non-trivial change: `/grill-with-docs` (or `/grill-me` for a quick decision) until we have shared understanding, then `/to-spec`, then `/to-tickets`, then `/implement` (which drives `/tdd` and closes with `/code-review`).
+- Big efforts with many open decisions: `/wayfinder` first.
+- Bugs: `/diagnosing-bugs`. Codebase health: `/improve-codebase-architecture`. Not sure which skill: `/ask-matt`.
+- Keep using superpowers for `test-driven-development`, `systematic-debugging`, `verification-before-completion`, and `using-git-worktrees`. Do not invoke `superpowers:brainstorming`; grilling replaces it.
+- Run `/setup-matt-pocock-skills` once per repo before the first use (GitHub Issues as the tracker, docs under `docs/agents/`).
+- GSD (`/gsd:*`) is uninstalled. Never suggest it.

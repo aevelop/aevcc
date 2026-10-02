@@ -37,3 +37,4 @@ open-code-review@open-code-review 1.0.0
 watch@claude-video 0.3.2
 ponytail@ponytail 4.10.1
 design@knowledge-work-plugins 1.2.0
+mattpocock-skills@claude-plugins-official 1.2.3

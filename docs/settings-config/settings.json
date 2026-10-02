@@ -184,14 +184,6 @@
     ],
     "SessionStart": [
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/gsd-check-update.js\""
-          }
-        ]
-      },
-      {
         "matcher": "",
         "hooks": [
           {
@@ -203,14 +195,6 @@
       }
     ],
     "PostToolUse": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/gsd-context-monitor.js\""
-          }
-        ]
-      },
       {
         "matcher": "",
         "hooks": [
@@ -330,10 +314,6 @@
         ]
       }
     ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "node \"$HOME/.claude/hooks/gsd-statusline.js\""
   },
   "enabledPlugins": {
     "hookify@claude-plugins-official": true,

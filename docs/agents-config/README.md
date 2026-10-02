@@ -2,19 +2,12 @@
 
 | Set | Location | Installed by |
 | --- | -------- | ------------ |
-| `gsd-*` (16) | `~/.claude/agents/gsd-*.md` (disabled on the reference machine: moved to `~/.claude/agents-disabled/`) | GSD, step 40. Never copy by hand. |
 | Plugin agents (`ecc:*`, `feature-dev:*`, `pr-review-toolkit:*`, `superpowers:code-reviewer`, `understand-anything:*`, `hookify:*`, `code-simplifier`) | plugin cache | step 20 |
 | Agency agents (101) | [/agents](../../agents) = [msitarzewski-agency-agents](msitarzewski-agency-agents) (+ [GUIDELINES.md](msitarzewski-agency-agents/GUIDELINES.md)) | opt-in, step 80 |
 | Legacy ECC-era agents (139) | [legacy/](legacy) | reference only |
 
-The reference machine has `~/.claude/agents` empty: the `gsd-*` set was moved to `~/.claude/agents-disabled/`
-(Claude Code only loads `~/.claude/agents`), and every active agent comes from plugins. To match it after step 40:
-
-```bash
-mkdir -p ~/.claude/agents-disabled && mv ~/.claude/agents/gsd-*.md ~/.claude/agents-disabled/   # undo: mv back
-```
-
-GSD's `/gsd:*` commands that spawn these agents will not find them while disabled.
+The reference machine has `~/.claude/agents` empty; every active agent comes from plugins. (The 16 `gsd-*` agents
+that used to be parked in `~/.claude/agents-disabled/` were deleted with GSD on 2026-10-02.)
 
 ## Install the agency agents (optional)
 
@@ -27,5 +20,5 @@ Or as this repo's plugin: `/plugin marketplace add aevelop/aev-cc` then `/plugin
 ## Verify
 
 ```bash
-ls ~/.claude/agents | wc -l       # 0 on the reference machine; 16 with GSD agents enabled; 117 with agency agents too
+ls ~/.claude/agents | wc -l       # 0 on the reference machine; 101 with the agency agents
 ```
