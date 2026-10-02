@@ -64,7 +64,8 @@ Use `-s project` instead to commit an `.mcp.json` into the repo.
 
 ## Present but installed elsewhere
 
-- Plugin MCPs: `context7`, `context-mode`, `supabase` docs (postgres-best-practices) -> step 20.
+- Plugin MCPs: `context7`, `context-mode`, `supabase` docs (postgres-best-practices), `design` connectors (figma,
+  slack, linear, asana, atlassian, notion, intercom; OAuth on demand, none connected) -> step 20.
 - claude.ai connectors (Gmail, Google Drive, Google Calendar) -> account-level, connect at claude.ai.
 - `claude-in-chrome` -> Chrome extension.
 

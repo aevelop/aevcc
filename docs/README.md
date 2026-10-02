@@ -19,7 +19,7 @@ bash scripts/install/20-plugins.sh # or any single step
 | ---- | ------- | --- | ------ |
 | 00 | Claude Code CLI, brew tools, npm globals, uv + serena-agent | [cli-config](cli-config/README.md) | `00-cli.sh` |
 | 10 | Global `~/.claude/CLAUDE.md` | [CLAUDE.md-config](CLAUDE.md-config/README.md) | `10-claude-md.sh` |
-| 20 | 15 marketplaces, 38 plugins (19 enabled, 19 installed-but-disabled) | [plugins-config](plugins-config/README.md) | `20-plugins.sh` |
+| 20 | 16 marketplaces, 39 plugins (21 enabled, 18 installed-but-disabled) | [plugins-config](plugins-config/README.md) | `20-plugins.sh` |
 | 30 | 50 `skills` CLI skills + 3 vendored + notebooklm | [skills-config](skills-config/README.md) | `30-skills.sh` |
 | 40 | Get Shit Done (commands, agents, hooks, statusline) | [gsd-config](gsd-config/README.md) | `40-gsd.sh` |
 | 50 | `settings.json` (model, effort, permissions, hooks) | [settings-config](settings-config/README.md) | `50-settings.sh` |

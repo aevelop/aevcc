@@ -13,3 +13,4 @@ understand-anything Lum1104/Understand-Anything
 open-code-review alibaba/open-code-review
 claude-video https://github.com/bradautomates/claude-video.git
 ponytail DietrichGebert/ponytail
+knowledge-work-plugins anthropics/knowledge-work-plugins
