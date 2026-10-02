@@ -34,3 +34,4 @@ understand-anything@understand-anything 2.7.5
 karpathy-automatic-claude-md@karpathy-automatic-claude-md 1.0.0
 modern-web-guidance@googlechrome 0.0.190 disabled
 open-code-review@open-code-review 1.0.0
+watch@claude-video 0.3.2

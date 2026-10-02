@@ -8,6 +8,7 @@ copy-paste commands and a matching script in `scripts/install/`. Run one step or
 ```bash
 git clone https://github.com/aevelop/aev-cc.git aevcc && cd aevcc
 export GITHUB_PERSONAL_ACCESS_TOKEN=... FIRECRAWL_API_KEY=... STITCH_X_GOOG_API_KEY=...   # optional, see mcp-config
+export GEMINI_API_KEY=...                                                                # optional, watch plugin (plugins-config)
 bash scripts/install/all.sh        # everything, in order
 bash scripts/install/20-plugins.sh # or any single step
 ```
@@ -18,7 +19,7 @@ bash scripts/install/20-plugins.sh # or any single step
 | ---- | ------- | --- | ------ |
 | 00 | Claude Code CLI, brew tools, npm globals | [cli-config](cli-config/README.md) | `00-cli.sh` |
 | 10 | Global `~/.claude/CLAUDE.md` | [CLAUDE.md-config](CLAUDE.md-config/README.md) | `10-claude-md.sh` |
-| 20 | 13 marketplaces, 36 plugins (17 enabled, 19 installed-but-disabled) | [plugins-config](plugins-config/README.md) | `20-plugins.sh` |
+| 20 | 14 marketplaces, 37 plugins (18 enabled, 19 installed-but-disabled) | [plugins-config](plugins-config/README.md) | `20-plugins.sh` |
 | 30 | 50 `skills` CLI skills + 3 vendored + notebooklm | [skills-config](skills-config/README.md) | `30-skills.sh` |
 | 40 | Get Shit Done (commands, agents, hooks, statusline) | [gsd-config](gsd-config/README.md) | `40-gsd.sh` |
 | 50 | `settings.json` (model, effort, permissions, hooks) | [settings-config](settings-config/README.md) | `50-settings.sh` |
@@ -51,3 +52,4 @@ Exports are machine-agnostic: home path -> `$HOME`, secrets -> `${PLACEHOLDER}`.
 - Login: run `claude` once; `gh auth login`; OAuth MCPs via `/mcp`; claude.ai connectors (Gmail, Drive, Calendar) at claude.ai.
 - [Pixel Agents](https://marketplace.visualstudio.com/items?itemName=pablodelucca.pixel-agents) VS Code extension (registers its own hooks).
 - Claude in Chrome browser extension.
+- `watch` plugin key: `~/.config/watch/.env` with `GEMINI_API_KEY=...` if `GEMINI_API_KEY` was not exported for step 20.

@@ -15,3 +15,14 @@ while read -r plugin version state; do
   run claude plugin install "$plugin" --scope user -y || echo "FAILED $plugin"
   if [ "${state:-}" = disabled ]; then run claude plugin disable "$plugin" --scope user || echo "FAILED disable $plugin"; fi
 done < "$ROOT/docs/plugins-config/plugins.txt"
+
+# watch@claude-video reads its Gemini key from ~/.config/watch/.env, never from the shell.
+if [ -n "${GEMINI_API_KEY:-}" ]; then
+  if [ "${DRY_RUN:-0}" = 1 ]; then echo "+ write ~/.config/watch/.env"; else
+    mkdir -p "$HOME/.config/watch"
+    printf 'GEMINI_API_KEY=%s\n' "$GEMINI_API_KEY" > "$HOME/.config/watch/.env"
+    chmod 600 "$HOME/.config/watch/.env"
+  fi
+else
+  echo "note: GEMINI_API_KEY not set; put it in ~/.config/watch/.env for the watch plugin (see docs/plugins-config)"
+fi
