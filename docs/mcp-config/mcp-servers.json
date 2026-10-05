@@ -115,16 +115,6 @@
       "command": "npx",
       "description": "Chain-of-thought reasoning"
     },
-    "serena": {
-      "type": "stdio",
-      "command": "serena",
-      "args": [
-        "start-mcp-server",
-        "--context=claude-code",
-        "--project-from-cwd"
-      ],
-      "env": {}
-    },
     "stitch": {
       "headers": {
         "X-Goog-Api-Key": "${STITCH_X_GOOG_API_KEY}"
