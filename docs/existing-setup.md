@@ -1,7 +1,7 @@
 # Already have Claude Code set up? Add aevcc without losing yours
 
 `all.sh` reproduces the reference machine and overwrites things. On a machine that already has a setup, use
-`KEEP_MINE=1`: it only adds. Five steps.
+`KEEP_MINE=1`: it only adds. Six steps.
 
 ## 1. Back up
 
@@ -55,7 +55,24 @@ Still replaced when the name is the same, in every mode:
 | 70 | `~/.claude/commands/nasa-code.md`, `autopush.md`, `overnight.md` |
 | 75 | `~/.claude/bin/ollama-cloud` |
 
-## 5. Optional: take parts of the global CLAUDE.md
+## 5. Check nothing was skipped
+
+`all.sh` ends with this check; run it again any time. It reads the same lists you trimmed in step 3.
+
+```bash
+KEEP_MINE=1 bash scripts/install/90-verify.sh
+```
+
+```text
+MISSING plugin ponytail@ponytail          fix: 20-plugins.sh
+MISSING MCP server github                 fix: 60-mcp.sh
+2 missing. Run the step on each line (bash scripts/install/<step>), then this script again.
+```
+
+`OK: everything in the repo lists is installed.` means you are done. It checks that each item is present, not
+that it works: a server with a wrong API key still counts as installed (`claude mcp list` shows those).
+
+## 6. Optional: take parts of the global CLAUDE.md
 
 Step 10 kept your file. Open [CLAUDE.md-config/CLAUDE.md](CLAUDE.md-config/CLAUDE.md) and paste the sections you
 want into `~/.claude/CLAUDE.md`. Restart Claude Code.

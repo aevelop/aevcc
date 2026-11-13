@@ -28,6 +28,7 @@ Machine that already has a Claude Code setup: follow [existing-setup.md](existin
 | 70 | Slash commands (`/nasa-code`, `/autopush`, `/overnight`) | [commands-config](commands-config/README.md) | `70-commands.sh` |
 | 75 | Helper scripts in `~/.claude/bin` (`ollama-cloud`) | [bin-config](bin-config/README.md) | `75-bin.sh` |
 | 80 | Agents (none active on the reference machine; agency agents opt-in) | [agents-config](agents-config/README.md) | `80-agents.sh` (opt-in) |
+| 90 | Verify: one `MISSING <item>  fix: <step>` line per thing that should be installed but is not; exit 1 if any. Runs at the end of `all.sh`, read-only | -- | `90-verify.sh` |
 | -- | Hooks: where each one comes from | [hooks-config](hooks-config/README.md) | covered by 20, 50 |
 
 Every step is independent; run one or all. Get Shit Done (formerly step 40) was uninstalled 2026-10-02: the

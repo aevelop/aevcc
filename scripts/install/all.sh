@@ -9,4 +9,7 @@ for s in 00-cli 10-claude-md 15-cursor-plugins 20-plugins 30-skills 50-settings 
   bash "$DIR/$s.sh"
 done
 [ "${AEVCC_AGENTS:-0}" = 1 ] && { echo "== 80-agents"; bash "$DIR/80-agents.sh"; }
-echo "Done. Restart Claude Code."
+[ "${DRY_RUN:-0}" = 1 ] && { echo "Dry run: nothing installed."; exit 0; }
+# Last step decides the exit code: lists every item that should be installed but is not.
+echo "== 90-verify"
+bash "$DIR/90-verify.sh" && echo "Done. Restart Claude Code."
