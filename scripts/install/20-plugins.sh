@@ -21,6 +21,8 @@ fi
 # Lines ending in "disabled" are installed, then turned off (matches the reference machine).
 while read -r plugin version state; do
   [ -z "${plugin:-}" ] && continue
+  # KEEP_MINE=1: skip the turned-off plugins entirely, so none of yours gets disabled.
+  [ "${KEEP_MINE:-0}" = 1 ] && [ "${state:-}" = disabled ] && continue
   run claude plugin install "$plugin" --scope user -y || echo "FAILED $plugin"
   if [ "${state:-}" = disabled ]; then run claude plugin disable "$plugin" --scope user || echo "FAILED disable $plugin"; fi
 done < "$ROOT/docs/plugins-config/plugins.txt"

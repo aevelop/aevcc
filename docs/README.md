@@ -15,6 +15,8 @@ bash scripts/install/20-plugins.sh # or any single step
 
 `DRY_RUN=1` prints the commands instead of running them.
 
+Machine that already has a Claude Code setup: follow [existing-setup.md](existing-setup.md) (`KEEP_MINE=1`, adds without overwriting).
+
 | Step | Concern | Doc | Script |
 | ---- | ------- | --- | ------ |
 | 00 | Claude Code CLI, brew tools, npm globals, uv | [cli-config](cli-config/README.md) | `00-cli.sh` |
