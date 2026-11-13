@@ -19,7 +19,7 @@ bash scripts/install/20-plugins.sh # or any single step
 | ---- | ------- | --- | ------ |
 | 00 | Claude Code CLI, brew tools, npm globals, uv | [cli-config](cli-config/README.md) | `00-cli.sh` |
 | 10 | Global `~/.claude/CLAUDE.md` | [CLAUDE.md-config](CLAUDE.md-config/README.md) | `10-claude-md.sh` |
-| 20 | 16 marketplaces, 40 plugins (22 enabled, 18 installed-but-disabled) | [plugins-config](plugins-config/README.md) | `20-plugins.sh` |
+| 20 | 19 marketplaces, 44 plugins (27 enabled, 17 installed-but-disabled) | [plugins-config](plugins-config/README.md) | `20-plugins.sh` |
 | 30 | 59 `skills` CLI skills + 3 vendored + notebooklm | [skills-config](skills-config/README.md) | `30-skills.sh` |
 | 50 | `settings.json` (model, effort, permissions, hooks) | [settings-config](settings-config/README.md) | `50-settings.sh` |
 | 60 | 18 user-scope MCP servers | [mcp-config](mcp-config/README.md) | `60-mcp.sh` |
@@ -49,6 +49,5 @@ Exports are machine-agnostic: home path -> `$HOME`, secrets -> `${PLACEHOLDER}`.
 ## Not covered by scripts
 
 - Login: run `claude` once; `gh auth login`; OAuth MCPs via `/mcp`; claude.ai connectors (Gmail, Drive, Calendar) at claude.ai.
-- [Pixel Agents](https://marketplace.visualstudio.com/items?itemName=pablodelucca.pixel-agents) VS Code extension (registers its own hooks).
 - Claude in Chrome browser extension.
 - `watch` plugin key: `~/.config/watch/.env` with `GEMINI_API_KEY=...` if `GEMINI_API_KEY` was not exported for step 20.

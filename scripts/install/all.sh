@@ -4,7 +4,7 @@
 set -euo pipefail
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
-for s in 00-cli 10-claude-md 20-plugins 30-skills 50-settings 60-mcp 70-commands; do
+for s in 00-cli 10-claude-md 15-cursor-plugins 20-plugins 30-skills 50-settings 60-mcp 70-commands; do
   echo "== $s"
   bash "$DIR/$s.sh"
 done

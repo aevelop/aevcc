@@ -135,6 +135,19 @@
       "description": "Vercel deployments and projects",
       "type": "http",
       "url": "https://mcp.vercel.com"
+    },
+    "lottiefiles-creator": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@lottiefiles/creator-mcp@latest"
+      ],
+      "env": {}
+    },
+    "rive": {
+      "type": "http",
+      "url": "http://127.0.0.1:9791/mcp"
     }
   }
 }

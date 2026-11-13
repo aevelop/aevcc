@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Merge docs/settings-config/settings.json into ~/.claude/settings.json (repo wins; arrays replaced).
-# pixel-agents hooks are dropped unless ~/.pixel-agents exists. See docs/settings-config/README.md.
+# See docs/settings-config/README.md.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 command -v jq >/dev/null || { echo "jq is required"; exit 1; }
@@ -13,7 +13,6 @@ mkdir -p "$HOME/.claude"
 drop_hooks() { FILTER="$FILTER | .hooks |= map_values(map(select([.hooks[].command | contains(\"$1\")] | any | not)))"; }
 
 FILTER='.[0] * .[1]'
-[ -d "$HOME/.pixel-agents" ] || drop_hooks ".pixel-agents"
 
 # Drop hooks/statusline whose script is not on this machine (e.g. GSD renamed a file).
 for p in $(jq -r '[.hooks[][].hooks[].command, .statusLine.command] | map(select(type == "string"))[]

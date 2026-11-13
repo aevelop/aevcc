@@ -9,6 +9,15 @@ while read -r name repo; do
   run claude plugin marketplace add "$repo" || echo "skip marketplace $name (already added?)"
 done < "$ROOT/docs/plugins-config/marketplaces.txt"
 
+# chrome-devtools-mcp 1.13.0 ships a `commands` array of objects that Claude Code rejects; drop it so the
+# install below passes. Remove this block once upstream fixes the manifest (see docs/plugins-config Notes).
+CDT="$HOME/.claude/plugins/marketplaces/chrome-devtools-plugins/.claude-plugin/plugin.json"
+if [ -f "$CDT" ] && jq -e '.commands' "$CDT" >/dev/null; then
+  if [ "${DRY_RUN:-0}" = 1 ]; then echo "+ patch $CDT (del .commands)"; else
+    jq 'del(.commands)' "$CDT" > "$CDT.tmp" && mv "$CDT.tmp" "$CDT"
+  fi
+fi
+
 # Lines ending in "disabled" are installed, then turned off (matches the reference machine).
 while read -r plugin version state; do
   [ -z "${plugin:-}" ] && continue

@@ -1,3 +1,4 @@
+aevcc-local /Users/thiago/.claude/local-marketplace
 anthropic-agent-skills anthropics/skills
 claude-plugins-official anthropics/claude-plugins-official
 context-mode mksglu/context-mode
@@ -14,3 +15,5 @@ open-code-review alibaba/open-code-review
 claude-video https://github.com/bradautomates/claude-video.git
 ponytail DietrichGebert/ponytail
 knowledge-work-plugins anthropics/knowledge-work-plugins
+cursor-plugins cursor/plugins
+chrome-devtools-plugins ChromeDevTools/chrome-devtools-mcp

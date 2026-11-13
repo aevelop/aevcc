@@ -43,6 +43,7 @@ heygen-com/hyperframes product-launch-video
 heygen-com/hyperframes remotion-to-hyperframes
 heygen-com/hyperframes slideshow
 heygen-com/hyperframes talking-head-recut
+jakubkrehel/make-interfaces-feel-better make-interfaces-feel-better
 jsmastery-pro/skills architect
 jsmastery-pro/skills audit
 jsmastery-pro/skills check
@@ -57,3 +58,4 @@ supabase/agent-skills supabase-postgres-best-practices
 vercel-labs/agent-browser agent-browser
 vercel-labs/deepsec deepsec
 vercel-labs/skills find-skills
+LottieFiles/motion-design-skill motion-design
