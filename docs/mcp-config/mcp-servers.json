@@ -148,6 +148,23 @@
     "rive": {
       "type": "http",
       "url": "http://127.0.0.1:9791/mcp"
+    },
+    "figcraft": {
+      "type": "stdio",
+      "command": "$HOME/.local/bin/figcraft-cli",
+      "args": [
+        "mcp"
+      ],
+      "env": {}
+    },
+    "design-library": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "$HOME/Desktop/Page-Fixes/part/b/design-library/src/cli.ts",
+        "mcp"
+      ],
+      "env": {}
     }
   }
 }

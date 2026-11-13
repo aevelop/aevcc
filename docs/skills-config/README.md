@@ -5,7 +5,7 @@ Four mechanisms, installed independently.
 | Mechanism | Count | Source of truth | Install |
 | --------- | ----- | --------------- | ------- |
 | `skills` CLI (vercel-labs) -> `~/.agents/skills/*`, symlinked into `~/.claude/skills/` (newer CLI versions copy straight into `~/.claude/skills/`) | 61 | [skills.txt](skills.txt) (`source skill`) | `30-skills.sh` |
-| Vendored in this repo -> copied to `~/.claude/skills/` | 3 | [`/skills`](../../skills) | `30-skills.sh` |
+| Vendored in this repo -> copied to `~/.claude/skills/` | 4 | [`/skills`](../../skills) | `30-skills.sh` |
 | Git clone -> `~/.claude/skills/notebooklm` | 1 | PleasePrompto/notebooklm-skill | `30-skills.sh` |
 | Plugin-bundled (superpowers, ecc, designer-skills, impeccable, anthropic skills, chrome-devtools-mcp, ...) | ~200 | [plugins-config](../plugins-config/README.md) | `20-plugins.sh` |
 
@@ -46,6 +46,7 @@ git clone https://github.com/PleasePrompto/notebooklm-skill ~/.claude/skills/not
 - `skills/ask-me-questions-for-context` -- 40-50 question interview that produces a reusable context `.md`
 - `skills/critical-thinking-partner` -- constructive-disagreement review mode
 - `skills/brand-guidelines` -- generic brand colors/typography for artifacts (not the Anthropic-branded one in `example-skills`)
+- `skills/herdr` -- drives the Herdr app and keeps every change in the TMD layout; needs Herdr installed (see [Not covered by scripts](../README.md#not-covered-by-scripts))
 
 ## Turned off on the reference machine
 
@@ -61,11 +62,12 @@ jq '.skillOverrides["copywriting"] = "off"' ~/.claude/settings.json > /tmp/s && 
 
 - `~/.claude/skills/learned` -- empty dir created by ecc.
 - `~/.claude/skills/synced` -- managed by claude.ai skill sync; appears on its own after login.
+- `~/.claude/skills/reverse-engineer-anything` -- written by `npx -y rea-agents@6.5.0 setup --client claude_code`.
 
 ## Verify
 
 ```bash
-ls ~/.claude/skills | wc -l                         # 66 on the reference machine
+ls ~/.claude/skills | wc -l                         # 72 on the reference machine
 jq '.skills | length' ~/.agents/.skill-lock.json
 ```
 

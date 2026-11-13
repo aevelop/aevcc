@@ -27,7 +27,8 @@ claude --version && node -v && jq --version && gh --version | head -1
 - `@alibaba-group/open-code-review` (`ocr` CLI) -> `open-code-review` plugin (`/open-code-review:review`).
 - `agent-browser` -> `agent-browser` skill. `ffmpeg` -> hyperframes video skills.
 - `uv` -> the `watch` plugin's optional local engine (step 20). `uv-tools:` in `versions.txt` lists what `uv tool list`
-  reports (empty on the reference machine since Serena was removed 2026-10-05).
+  reports (`specify-cli` on the reference machine: a project tool, not Claude Code setup).
 - `bun` is present on the reference machine (`.claude/package-manager.json` says bun) but nothing here requires it.
-- Other npm globals in `versions.txt` (gemini-cli, shopify, eas, mjml, ...) are project tools, not Claude Code setup.
+- Other npm globals in `versions.txt` (pnpm, corepack) are project tools, not Claude Code setup. The reference
+  machine now defaults to Node 24; nvm keeps globals per Node version, so re-run step 00 after switching.
 - Login: run `claude` once. `gh auth login` for GitHub.

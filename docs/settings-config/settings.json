@@ -163,7 +163,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "fable",
   "skillOverrides": {
     "ab-test-setup": "off",
     "agent-browser": "off",
@@ -220,6 +220,16 @@
             "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
       }
     ],
     "SessionStart": [
@@ -228,6 +238,136 @@
           {
             "type": "command",
             "command": "\"$HOME/.claude/hooks/context-mode-cache-heal.mjs\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh '$HOME/.claude/hooks/claude-monitor-report.zsh'",
+            "timeout": 5,
+            "async": true
           }
         ]
       }
@@ -276,7 +416,9 @@
     "context-mode@context-mode": true,
     "cursor-team-kit@aevcc-local": true,
     "thermos@aevcc-local": true,
-    "pstack@cursor-plugins": true
+    "pstack@cursor-plugins": true,
+    "modern-web-guidance@claude-plugins-official": true,
+    "chrome-devtools-mcp@chrome-devtools-plugins": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
@@ -368,6 +510,12 @@
       "source": {
         "source": "github",
         "repo": "cursor/plugins"
+      }
+    },
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
       }
     }
   },

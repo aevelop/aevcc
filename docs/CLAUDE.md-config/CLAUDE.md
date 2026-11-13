@@ -233,3 +233,8 @@ Planning, design, and ticket breakdown go through the `mattpocock-skills` plugin
 - Run `/setup-matt-pocock-skills` once per repo before the first use (GitHub Issues as the tracker, docs under `docs/agents/`).
 - GSD (`/gsd:*`) is uninstalled. Never suggest it.
 - jsmastery-pro/skills (`/scope`, `/audit`, `/architect`, `/develop`, `/check`, `/test`, `/document`, `/sync`, `/debug`) are installed as a complement, not a second spine: use `/audit` and `/sync` to create and keep nested `AGENTS.md` files current, and `/architect` + `/check` when a spec with numbered acceptance criteria is wanted. Do not run `/scope`/`/develop` in place of the grill -> spec -> tickets -> implement flow.
+
+<!-- tmd-board:start (added by Herdr TMD's install.sh) -->
+## Herdr TMD Board
+When I give you a TMD Board task code for the work in this terminal (like `EMT-k3f9`), run `hc label "$HC_TERMINAL_ID" tmd.task=<code>` once, so the board shows you on that task.
+<!-- tmd-board:end -->

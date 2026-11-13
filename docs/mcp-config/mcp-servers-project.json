@@ -32,5 +32,50 @@
       ],
       "command": "npx"
     }
+  },
+  "$HOME/Downloads/soundcraft-web-0.6.1": {
+    "soundcraft": {
+      "type": "stdio",
+      "command": "$HOME/.local/bin/soundcraft-cli",
+      "args": [
+        "mcp"
+      ],
+      "env": {}
+    }
+  },
+  "$HOME/reverse-engineering": {
+    "rea": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "rea-agents@6.5.0",
+        "mcp"
+      ],
+      "env": {
+        "GHIDRA_INSTALL_DIR": "${GHIDRA_INSTALL_DIR}",
+        "HOPPER_LAUNCHER_PATH": "${HOPPER_LAUNCHER_PATH}",
+        "JAVA_HOME": "${JAVA_HOME}",
+        "REA_IDA_MCP_CONFIG": "${REA_IDA_MCP_CONFIG}",
+        "REA_JADX_MCP_JAR": "${REA_JADX_MCP_JAR}"
+      }
+    },
+    "rea-linux": {
+      "type": "stdio",
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "--platform",
+        "linux/amd64",
+        "-v",
+        "$HOME/Downloads:/work",
+        "-v",
+        "/private/tmp/claude-502:/scratch",
+        "rea-linux:6.5.0",
+        "mcp"
+      ],
+      "env": {}
+    }
   }
 }

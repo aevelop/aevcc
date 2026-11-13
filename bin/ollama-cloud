@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+"""Outsource a non-coding text task to Ollama Cloud.
+
+The result is written to --out; only a one-line summary is printed, so the
+calling agent's context stays small. The API key is read from the macOS
+Keychain (service: ollama-cloud-api-key).
+
+Usage:
+  ollama-cloud --list-models
+  ollama-cloud --model MODEL (--prompt TEXT | --prompt-file FILE)
+               [--system TEXT] [--input-file FILE ...] --out FILE
+"""
+import argparse
+import getpass
+import json
+import subprocess
+import sys
+import urllib.error
+import urllib.request
+
+API_BASE = "https://ollama.com/api"
+KEYCHAIN_SERVICE = "ollama-cloud-api-key"
+REQUEST_TIMEOUT_SECONDS = 900
+ERROR_BODY_MAX_CHARS = 500
+
+
+def fail(message):
+    print(f"ollama-cloud: {message}", file=sys.stderr)
+    sys.exit(1)
+
+
+def read_api_key():
+    result = subprocess.run(
+        ["security", "find-generic-password", "-a", getpass.getuser(),
+         "-s", KEYCHAIN_SERVICE, "-w"],
+        capture_output=True, text=True,
+    )
+    if result.returncode != 0 or not result.stdout.strip():
+        fail(
+            "API key not found in Keychain. Add it by running in Terminal:\n"
+            f'  security add-generic-password -a "$USER" -s {KEYCHAIN_SERVICE} -U -w'
+        )
+    return result.stdout.strip()
+
+
+def read_file(path):
+    try:
+        with open(path, encoding="utf-8") as handle:
+            return handle.read()
+    except OSError as error:
+        fail(f"cannot read {path}: {error}")
+
+
+def open_request(request):
+    try:
+        return urllib.request.urlopen(request, timeout=REQUEST_TIMEOUT_SECONDS)
+    except urllib.error.HTTPError as error:
+        body = error.read().decode("utf-8", "replace")[:ERROR_BODY_MAX_CHARS]
+        fail(f"HTTP {error.code}: {body}")
+    except urllib.error.URLError as error:
+        fail(f"network error: {error.reason}")
+
+
+def list_models():
+    with open_request(urllib.request.Request(f"{API_BASE}/tags")) as response:
+        models = json.load(response).get("models", [])
+    for name in sorted(model["name"] for model in models):
+        print(name)
+
+
+def build_user_content(args):
+    prompt = args.prompt if args.prompt is not None else read_file(args.prompt_file)
+    inputs = [
+        f'<input file="{path}">\n{read_file(path)}\n</input>'
+        for path in args.input_file
+    ]
+    return "\n\n".join([prompt, *inputs])
+
+
+def chat(args):
+    system = [{"role": "system", "content": args.system}] if args.system else []
+    payload = {
+        "model": args.model,
+        "messages": [*system, {"role": "user", "content": build_user_content(args)}],
+        "stream": True,
+    }
+    request = urllib.request.Request(
+        f"{API_BASE}/chat",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Authorization": f"Bearer {read_api_key()}",
+            "Content-Type": "application/json",
+        },
+    )
+    parts = []
+    final = {}
+    with open_request(request) as response:
+        for line in response:
+            if not line.strip():
+                continue
+            chunk = json.loads(line)
+            if chunk.get("error"):
+                fail(f"API error: {chunk['error']}")
+            parts.append(chunk.get("message", {}).get("content", ""))
+            if chunk.get("done"):
+                final = chunk
+    content = "".join(parts).strip()
+    if not content:
+        fail("model returned empty content")
+    with open(args.out, "w", encoding="utf-8") as handle:
+        handle.write(content + "\n")
+    print(
+        f"ok model={args.model} input_tokens={final.get('prompt_eval_count', '?')} "
+        f"output_tokens={final.get('eval_count', '?')} chars={len(content)} out={args.out}"
+    )
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    parser.add_argument("--list-models", action="store_true")
+    parser.add_argument("--model")
+    prompt_group = parser.add_mutually_exclusive_group()
+    prompt_group.add_argument("--prompt")
+    prompt_group.add_argument("--prompt-file")
+    parser.add_argument("--system")
+    parser.add_argument("--input-file", action="append", default=[])
+    parser.add_argument("--out")
+    args = parser.parse_args()
+
+    if args.list_models:
+        list_models()
+        return
+    if not args.model or not args.out or (args.prompt is None and not args.prompt_file):
+        parser.error("--model, --out and one of --prompt/--prompt-file are required")
+    chat(args)
+
+
+if __name__ == "__main__":
+    main()

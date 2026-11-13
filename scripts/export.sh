@@ -13,10 +13,13 @@ STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
 
 # Hand-made (or upstream-less) items that live only in ~/.claude. Add new ones here.
-CUSTOM_SKILLS=(ask-me-questions-for-context critical-thinking-partner brand-guidelines)
+CUSTOM_SKILLS=(ask-me-questions-for-context critical-thinking-partner brand-guidelines herdr)
 CUSTOM_COMMANDS=(nasa-code.md)
+# Helper scripts in ~/.claude/bin. cf-images-upload stays local: it hardcodes an account id.
+CUSTOM_BIN=(ollama-cloud)
 # learned: empty dir from ecc | synced: claude.ai skill sync | notebooklm: git clone, see docs/skills-config
-IGNORE_SKILLS=(learned synced notebooklm)
+# reverse-engineer-anything: written by `npx rea-agents setup`, see docs/skills-config
+IGNORE_SKILLS=(learned synced notebooklm reverse-engineer-anything)
 # Skills installed by the `skills` CLI before it kept a lock file ("source skill"). Add here if export warns.
 EXTRA_SKILLS=(
   "vercel-labs/agent-browser agent-browser"
@@ -99,7 +102,7 @@ review() {
 # --- produce everything into $STAGE (same layout as the repo) ------------------------------------------
 D="$STAGE/docs"
 mkdir -p "$D"/{settings-config,CLAUDE.md-config,plugins-config,skills-config,mcp-config,cli-config} \
-         "$STAGE/skills" "$STAGE/commands"
+         "$STAGE/skills" "$STAGE/commands" "$STAGE/bin"
 
 # 1. settings.json. autoMode is dropped: its rules and notes describe private projects, repos and secret names.
 dehome < "$CL/settings.json" | jq 'del(.autoMode)' > "$D/settings-config/settings.json"
@@ -130,6 +133,7 @@ done
 # 5. hand-made skills/commands (-L follows symlinks into ~/.agents/skills)
 for s in "${CUSTOM_SKILLS[@]}"; do cp -RL "$CL/skills/$s" "$STAGE/skills/$s"; done
 for c in "${CUSTOM_COMMANDS[@]}"; do cp "$CL/commands/$c" "$STAGE/commands/$c"; done
+for b in "${CUSTOM_BIN[@]}"; do cp "$CL/bin/$b" "$STAGE/bin/$b"; done
 for d in "$CL"/skills/*/; do
   n=$(basename "$d")
   [ -L "${d%/}" ] && continue
@@ -168,5 +172,6 @@ review docs/mcp-config/mcp-servers-project.json json
 review docs/cli-config/versions.txt            lines
 for s in "${CUSTOM_SKILLS[@]}";   do review "skills/$s"   prose; done
 for c in "${CUSTOM_COMMANDS[@]}"; do review "commands/$c" prose; done
+for b in "${CUSTOM_BIN[@]}";      do review "bin/$b"      prose; done
 
 echo; echo "Export done. Review with: git diff"
